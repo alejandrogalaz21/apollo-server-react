@@ -1,4 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
+const typeDefs = require('./db/shcema')
+const resolvers = require('./db/resolvers')
 
 const cursos = [
   {
@@ -18,21 +20,6 @@ const cursos = [
     tecnologia: 'React'
   }
 ]
-
-const typeDefs = gql`
-  type Curso {
-    titulo: String
-  }
-
-  type Query {
-    obtenerCursos: Curso
-  }
-`
-const resolvers = {
-  Query: {
-    obtenerCursos: () => cursos[0]
-  }
-}
 
 // Server
 const server = new ApolloServer({ typeDefs, resolvers })
